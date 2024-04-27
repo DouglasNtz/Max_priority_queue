@@ -35,6 +35,10 @@ impl<T: PartialOrd + Copy, E> PriorityQueueNoDraw<T, E> {
 
     pub fn extract_max_priority(self: &mut Self) -> Option<E> {
 
+        if self.array.is_empty() {
+            return None;
+        }
+
         let last = self.array.len() - 1;
 
         self.array.swap(0, last);
