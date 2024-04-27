@@ -1,5 +1,4 @@
 use super::smart_priority_queue::{SmartPriorityQueue, PriorityUsize, Element};
-use rand;
 
 #[derive(Debug)]
 struct AnyObject {
@@ -207,6 +206,7 @@ fn test_extract_insert_one_a_one() {
     assert_eq!(priority_queue.extract_max_priority().unwrap().object_retrieve().id, 1014);
 
     assert_eq!(priority_queue.extract_max_priority().unwrap().object_retrieve().id, 1015);
+
 }
 
 #[test]

@@ -1,0 +1,24 @@
+Os 10 primeiros elementos a entrarem na fila são:
+Element { priority: Maximum, object: JobExecution { id: 1001, job_name: "job5" } }
+Element { priority: Mininum, object: JobExecution { id: 1002, job_name: "job10" } }
+Element { priority: Maximum, object: JobExecution { id: 1003, job_name: "job2" } }
+Element { priority: Medium, object: JobExecution { id: 1004, job_name: "job1" } }
+Element { priority: Medium, object: JobExecution { id: 1005, job_name: "job3" } }
+Element { priority: Maximum, object: JobExecution { id: 1006, job_name: "job4" } }
+Element { priority: Mininum, object: JobExecution { id: 1007, job_name: "job9" } }
+Element { priority: Medium, object: JobExecution { id: 1008, job_name: "job2" } }
+Element { priority: Medium, object: JobExecution { id: 1009, job_name: "job1" } }
+Element { priority: Mininum, object: JobExecution { id: 1010, job_name: "job5" } }
+Os três primeiros jobs a serem executados são:
+Element { priority: Maximum, object: JobExecution { id: 1001, job_name: "job5" } }
+Element { priority: Maximum, object: JobExecution { id: 1003, job_name: "job2" } }
+Element { priority: Maximum, object: JobExecution { id: 1006, job_name: "job4" } }
+Elemento deletado com sucesso!
+Elemento deletado com sucesso!
+Elemento deletado com sucesso!
+Elemento com ordem de entrada 200 não consta no map
+Vamos alterar algumas prioridades:
+Elemento com ordem de entrada 15 teve sua prioridade alerada com sucesso!
+Elemento com ordem de entrada 97 não consta no map
+Elemento com ordem de entrada 62 teve sua prioridade alerada com sucesso!
+Elemento com ordem de entrada 2 teve sua prioridade alerada com sucesso!

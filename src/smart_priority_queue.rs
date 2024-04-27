@@ -52,14 +52,6 @@ pub struct SmartPriorityQueue<T: PriorityUsize, E> {
 }
 impl<T: PriorityUsize, E> SmartPriorityQueue<T, E> {
 
-    pub fn entry_orders_vec(self: &Self) -> Vec<usize> {
-        let mut v = vec![];
-        for queue_element in &self.array {
-            v.push(queue_element.entry_order)
-        }
-        v
-    }
-
     pub fn len(self: &Self) -> usize {
         self.array.len()
     }
@@ -98,7 +90,7 @@ impl<T: PriorityUsize, E> SmartPriorityQueue<T, E> {
                 println!("Elemento com ordem de entrada {entry_order} não consta no map");
                 return;
             }
-            _ => {},
+            _ => {}
         }
 
         let last = self.array.len() - 1;
@@ -120,7 +112,11 @@ impl<T: PriorityUsize, E> SmartPriorityQueue<T, E> {
 
         self.array.pop().unwrap_or_else(|| panic!("Como não exsite último elemento pra dropar??? bug!!!"));
 
-        if last > 0 {
+        println!("Elemento deletado com sucesso!");
+
+        if delete_position == last {
+            return;
+        } else {
             Self::max_heapify(delete_position + 1, &mut self.array);
         }
 
@@ -185,6 +181,8 @@ impl<T: PriorityUsize, E> SmartPriorityQueue<T, E> {
         old_priority_usize = self.array.get(change_position).unwrap().priority;
 
         self.array.get_mut(change_position).unwrap().priority = new_priority_usize;
+
+        println!("Elemento com ordem de entrada {entry_order} teve sua prioridade alerada com sucesso!");
 
         if new_priority_usize < old_priority_usize {
 
