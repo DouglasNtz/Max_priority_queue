@@ -31,7 +31,7 @@ fn main() {
 
     let mut priority_queue = PriorityQueueNoDraw::new(elements);
 
-    println!("Elementos por ordem de extração:");
+    println!("Elementos por ordem de extração: par prioridade-elemento");
     while let Some(element) = priority_queue.extract_max_priority() {
         println!("{:?}", (h.get(&element).unwrap(), element));
     }
@@ -64,7 +64,7 @@ fn main() {
         priority_queue.insert(element);
     }
 
-    println!("Elementos por ordem de extração:");
+    println!("Elementos por ordem de extração: par prioridade-elemento");
     while let Some(element) = priority_queue.extract_max_priority() {
         println!("{:?}", (h.get(&element).unwrap(), element));
     }
