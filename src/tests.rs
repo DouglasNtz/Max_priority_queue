@@ -186,7 +186,7 @@ fn test_same_extract() {
 
     for i in 0..n {
 
-        assert_eq!(priority_queue_full.extract_max_priority(), priority_queue_one_a_one.extract_max_priority());  // primeiro 10
+        assert_eq!(priority_queue_full.extract_max_priority(), priority_queue_one_a_one.extract_max_priority());
 
     }
 }

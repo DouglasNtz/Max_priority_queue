@@ -1,15 +1,25 @@
 use std::cmp::Ordering;
 use std::collections::HashMap;
 
-trait PriorityUsize {
+pub trait PriorityUsize {
     fn to_usize(self: &Self) -> usize;
 }
 
 #[derive(Debug)]
-struct Element<T: PriorityUsize, E> {
+pub struct Element<T: PriorityUsize, E> {
     priority: T,
     object: Box<E>
 }
+impl<T: PriorityUsize, E> Element<T, E> {
+
+    pub fn new(priority: T, object: Box<E>) -> Self {
+        Self {priority, object}
+    }
+    pub fn object_retrieve(self: Self) -> E {
+        *self.object
+    }
+}
+
 #[derive(Debug)]
 struct QueueElement {
     priority: usize,
@@ -42,8 +52,16 @@ pub struct SmartPriorityQueue<T: PriorityUsize, E> {
 }
 impl<T: PriorityUsize, E> SmartPriorityQueue<T, E> {
 
-    pub fn array<'a>(self: &'a Self) -> &'a Vec<QueueElement> {
-        &self.array
+    pub fn entry_orders_vec(self: &Self) -> Vec<usize> {
+        let mut v = vec![];
+        for queue_element in &self.array {
+            v.push(queue_element.entry_order)
+        }
+        v
+    }
+
+    pub fn len(self: &Self) -> usize {
+        self.array.len()
     }
 
     pub fn insert(self: &mut Self, element: Element<T, E>) {
@@ -259,6 +277,44 @@ impl<T: PriorityUsize, E> SmartPriorityQueue<T, E> {
             }
             _ => {panic!("Isso nunca vai acontecer!!!");}
         }
+    }
+
+    pub fn is_max_heap(self: &Self) -> bool {
+
+        let mut indices = 1..=(self.len()/2);
+
+        for i in indices.rev() {
+
+            let parent = self.array.get(i - 1).unwrap();
+
+            let left_children = self.array.get(2*i - 1);
+
+            let rigth_children = self.array.get(2*i);
+
+            match (left_children, rigth_children) {
+
+                (None, None) => {
+                    continue;
+                }
+                (Some(left), None) => {
+                    if parent >= left {
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
+                (Some(left), Some(right)) => {
+                    if parent >= left && parent >= right {
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
+                _ => {panic!("Isso nunca vai acontecer!!!");}
+            }
+        }
+
+        true
     }
 
 }
