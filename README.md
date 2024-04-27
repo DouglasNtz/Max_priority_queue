@@ -2,34 +2,22 @@
 
 Implementação de uma max-priority-queue em Rust, baseadas em  max-heap.
 
-Fiz duas implementaçõe:
+A implementação principal, a SmartPriorityQueue conta com diversas propriedades, entre elas a inserção
 
+de elementos e a extração do elemento de prioridade máxima. Além disso ainda podemos deletar elementos e 
 
-Uma em que a max-priority-queue não trata desempates. Nesse caso, dois elementos com
+podemos mudar a prioridade de um elemento que está na fila.
 
-mesma prioridade inseridos em uma certa ordem, podem ser extraídos numa ordem contrária.
+O exemplo contido em main.rs mostra o funcionamento de um modelos onde os objetos são jobs a serem executados.
 
+A prioridade é um enum chamado Urgency que possui três variantes: Maximum, Medium e Minimum.
 
-A outra gera uma chave secundária automática, por debaixo dos panos. Ela garante que dois elementos
+O critério de desempate para execução dos jobs, depois de verificada a prioridade, é a ordem de entrada na fila.
 
-com a mesma prioridade, serão extraídos na mesma ordem que foram inseridos. Ou seja, para os elementos
+Ou seja, primeiro serão exectados os jobs com prioridade Maximum, depois os com Medium e por último os com Minimum.
 
-empatados em prioridade, é extraído primeiro aquele que entrou primeiro na fila.
+Dados dois jobs com mesma prioridade, primeiro será executado o que entrou antes na fila.
 
+Para deletar objetos e mudar sua prioridade, optamos por usar a ordem de entrada como chave. Para em vez disso
 
-Os módulos de testes provam que a extração é sempre correta. Ou seja, é de fato o que o algoritmo deve fazer.
-
-
-Outro ponto demonstrado nos testes, é que dado um conjunto de elementos, inserí-los um a um gera uma max-heap que pode
-
-ser diferente da max-heap gerada inserindo o array de elementos inteiro e então aplicando build_max_heap para transformar
-
-o array numa max-heap. 
-
-Porém, o mais incrível é que a ordem de extração de cada uma dessas max-heap é idêntica!!! 
-
-Até mesmo para a max-priority-queue que não trata desempates, as extrações dessas max-heap distintas tem extrações iguais. 
-
-Mas é claro que a extração da max-priority-queue que não trata desempates pode ser diferente da que trata desempates.
-
-
+usarmos o id do objeto, precisaríamos garantir que toda aplicação usará objeto que possuem um id.
